@@ -1,39 +1,60 @@
 #include "beautifulWordCounter.h"
 
-BeautifulWordCounter::BeautifulWordCounter() :
+BeautifulWordsCounter::BeautifulWordsCounter() :
 	m_counter{0}
 {
+	generator();
 }
 
-void BeautifulWordCounter::checkNumber(const std::string& number)
+void BeautifulWordsCounter::generator()
 {
-	std::string upper{ number };
-	if (upper.length() != partLength * 2 + 1)
+	std::string number = "000000";
+	while (true)
 	{
-		throw std::logic_error("Incorrect number length: " + upper);
-	}
-	std::transform(std::begin(number), std::end(number), upper.begin(), ::toupper);
-
-	int sumLeft = 0;
-	int sumRight = 0;
-	for (int i = 0; i < partLength; ++i)
-	{
-		sumLeft += getDigit(upper[i]);
-		sumRight += getDigit(upper[upper.length() - i - 1]);
-	}
-
-	if (sumLeft == sumRight)
-	{
-		++m_counter;
+		m_sums[getSum(number)]++;
+		if (number == "CCCCCC")
+		{
+			break;
+		}
+		increment(number);
 	}
 }
 
-int BeautifulWordCounter::count() const
+void BeautifulWordsCounter::increment(std::string& str)
 {
-	return m_counter;
+	for (int i = static_cast<int>(str.size()) - 1; i >= 0; --i)
+	{
+		int digit = getDigit(str[i]);
+		if (digit != 12)
+		{
+			str[i] = getChar(digit + 1);
+			break;
+		}
+		else
+		{
+			str[i] = '0';
+			continue;
+		}
+	}
 }
 
-int BeautifulWordCounter::getDigit(char digit) const
+int BeautifulWordsCounter::getSum(const std::string& number) const
+{
+	int sum = 0;
+	std::for_each(number.begin(), number.end(), [this, &sum](const char ch) { sum += this->getDigit(ch); });
+	return sum;
+}
+
+__int64 BeautifulWordsCounter::count()
+{
+	for (const auto& p : m_sums)
+	{
+		m_counter += p.second * p.second;
+	}
+	return m_counter * (partLength * 2 + 1);
+}
+
+int BeautifulWordsCounter::getDigit(char digit) const
 {
 	if (::isdigit(digit))
 	{
@@ -52,4 +73,25 @@ int BeautifulWordCounter::getDigit(char digit) const
 		return 12;
 	}
 	throw std::logic_error("Unknown digit: " + std::string{ digit });
+}
+
+char BeautifulWordsCounter::getChar(int digit) const
+{
+	if (digit < 10)
+	{
+		return static_cast<char>(digit + '0');
+	}
+	else if (digit == 10)
+	{
+		return 'A';
+	}
+	else if (digit == 11)
+	{
+		return 'B';
+	}
+	else if (digit == 12)
+	{
+		return 'C';
+	}
+	throw std::logic_error("Unknown digit : " + std::to_string(digit));
 }
