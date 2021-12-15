@@ -20,10 +20,11 @@ class BeautifulWordsCounter
 {
 public:
 	BeautifulWordsCounter();
+	__int64 count();
+private:
 	void generator();
 	int getSum(const std::string& number) const;
 	void incrementNumber(std::string& str);
-	__int64 count();
 	int getDigit(char digit) const;
 	char getChar(int digit) const;
 private:
