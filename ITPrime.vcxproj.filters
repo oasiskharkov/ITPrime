@@ -18,12 +18,12 @@
     <ClCompile Include="ITPrime.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="beautifulWordCounter.cpp">
+    <ClCompile Include="beautifulWordsCounter.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="beautifulWordCounter.h">
+    <ClInclude Include="beautifulWordsCounter.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

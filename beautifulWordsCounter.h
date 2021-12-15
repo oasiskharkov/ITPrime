@@ -4,12 +4,16 @@
 #include <iostream>
 #include <algorithm>
 #include <map>
-#include <functional>
 #include <numeric>
 
 namespace 
 {
 	constexpr int partLength = 6;
+	constexpr int A = 10;
+	constexpr int B = 11;
+	constexpr int C = 12;
+	constexpr char null = '0';
+	constexpr int digitsCount = 13;
 }
 
 class BeautifulWordsCounter
@@ -18,7 +22,7 @@ public:
 	BeautifulWordsCounter();
 	void generator();
 	int getSum(const std::string& number) const;
-	void increment(std::string& str);
+	void incrementNumber(std::string& str);
 	__int64 count();
 	int getDigit(char digit) const;
 	char getChar(int digit) const;

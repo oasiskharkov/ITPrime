@@ -1,4 +1,4 @@
-﻿#include "beautifulWordCounter.h"
+﻿#include "beautifulWordsCounter.h"
 
 int main()
 {

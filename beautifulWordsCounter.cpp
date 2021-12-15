@@ -1,7 +1,7 @@
-#include "beautifulWordCounter.h"
+#include "beautifulWordsCounter.h"
 
 BeautifulWordsCounter::BeautifulWordsCounter() :
-	m_counter{0}
+	m_counter{0ll}
 {
 	generator();
 }
@@ -16,33 +16,30 @@ void BeautifulWordsCounter::generator()
 		{
 			break;
 		}
-		increment(number);
+		incrementNumber(number);
 	}
 }
 
-void BeautifulWordsCounter::increment(std::string& str)
+void BeautifulWordsCounter::incrementNumber(std::string& str)
 {
 	for (int i = static_cast<int>(str.size()) - 1; i >= 0; --i)
 	{
 		int digit = getDigit(str[i]);
-		if (digit != 12)
+		if (digit != C)
 		{
 			str[i] = getChar(digit + 1);
 			break;
 		}
 		else
 		{
-			str[i] = '0';
-			continue;
+			str[i] = null;
 		}
 	}
 }
 
 int BeautifulWordsCounter::getSum(const std::string& number) const
 {
-	int sum = 0;
-	std::for_each(number.begin(), number.end(), [this, &sum](const char ch) { sum += this->getDigit(ch); });
-	return sum;
+	return std::accumulate(number.begin(), number.end(), 0, [this](int sum, const char ch) { return sum + this->getDigit(ch); });
 }
 
 __int64 BeautifulWordsCounter::count()
@@ -51,45 +48,45 @@ __int64 BeautifulWordsCounter::count()
 	{
 		m_counter += p.second * p.second;
 	}
-	return m_counter * (partLength * 2 + 1);
+	return m_counter * digitsCount;
 }
 
 int BeautifulWordsCounter::getDigit(char digit) const
 {
 	if (::isdigit(digit))
 	{
-		return digit - '0';
+		return digit - null;
 	}
 	else if (digit == 'A')
 	{
-		return 10;
+		return A;
 	}
 	else if (digit == 'B')
 	{
-		return 11;
+		return B;
 	}
 	else if (digit == 'C')
 	{
-		return 12;
+		return C;
 	}
-	throw std::logic_error("Unknown digit: " + std::string{ digit });
+	throw std::logic_error("Unknown digit: " + std::string{digit});
 }
 
 char BeautifulWordsCounter::getChar(int digit) const
 {
-	if (digit < 10)
+	if (digit < A)
 	{
-		return static_cast<char>(digit + '0');
+		return static_cast<char>(digit + null);
 	}
-	else if (digit == 10)
+	else if (digit == A)
 	{
 		return 'A';
 	}
-	else if (digit == 11)
+	else if (digit == B)
 	{
 		return 'B';
 	}
-	else if (digit == 12)
+	else if (digit == C)
 	{
 		return 'C';
 	}
