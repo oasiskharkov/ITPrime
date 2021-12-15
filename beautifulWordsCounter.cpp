@@ -8,11 +8,11 @@ BeautifulWordsCounter::BeautifulWordsCounter() :
 
 void BeautifulWordsCounter::generator()
 {
-	std::string number = "000000";
+	std::string number = firstNumber;
 	while (true)
 	{
 		m_sums[getSum(number)]++;
-		if (number == "CCCCCC")
+		if (number == lastNumber)
 		{
 			break;
 		}
@@ -69,7 +69,7 @@ int BeautifulWordsCounter::getDigit(char digit) const
 	{
 		return C;
 	}
-	throw std::logic_error("Unknown digit: " + std::string{digit});
+	throw std::logic_error("Unknown character: " + std::string{digit});
 }
 
 char BeautifulWordsCounter::getChar(int digit) const

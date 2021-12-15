@@ -14,6 +14,8 @@ namespace
 	constexpr int C = 12;
 	constexpr char null = '0';
 	constexpr int digitsCount = 13;
+	const char* firstNumber = "000000";
+	const char* lastNumber = "CCCCCC";
 }
 
 class BeautifulWordsCounter
