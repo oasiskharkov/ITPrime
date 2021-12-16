@@ -8,13 +8,13 @@
 
 namespace 
 {
-	constexpr int A = 10;
-	constexpr int B = 11;
-	constexpr int C = 12;
-	constexpr char null = '0';
-	constexpr int digitsCount = 13;
-	const char* firstNumber = "000000";
-	const char* lastNumber = "CCCCCC";
+	constexpr int A{10};
+	constexpr int B{11};
+	constexpr int C{12};
+	constexpr char null{'0'};
+	constexpr int digitsCount{13};
+	const std::string firstNumber{"000000"};
+	const std::string lastNumber{"CCCCCC"};
 }
 
 class BeautifulWordsCounter
