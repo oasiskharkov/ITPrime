@@ -8,7 +8,6 @@
 
 namespace 
 {
-	constexpr int partLength = 6;
 	constexpr int A = 10;
 	constexpr int B = 11;
 	constexpr int C = 12;

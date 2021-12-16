@@ -22,7 +22,7 @@ void BeautifulWordsCounter::generator()
 
 void BeautifulWordsCounter::incrementNumber(std::string& str)
 {
-	for (int i = static_cast<int>(str.size()) - 1; i >= 0; --i)
+	for (int i = static_cast<int>(str.length()) - 1; i >= 0; --i)
 	{
 		int digit = getDigit(str[i]);
 		if (digit != C)
